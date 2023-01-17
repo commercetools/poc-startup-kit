@@ -1,0 +1,75 @@
+import '@adyen/adyen-web/dist/adyen.css';
+
+type CheckoutNoPaymentProps = {
+  onSubmitOrder: () => void;
+};
+
+const CheckoutNoPayment: React.FC<CheckoutNoPaymentProps> = ({ onSubmitOrder }) => {
+  return (
+    <section aria-labelledby="cart-heading" className="bg-white md:rounded md:shadow-md lg:col-span-7">
+      <div className="border-b-4 border-neutral-100 px-4 py-5 md:px-6">
+        <div className="mb-4 text-xs font-bold uppercase leading-tight text-neutral-600">
+          <span>Payment</span>
+        </div>
+        <label className={`mt-2 flex h-16 cursor-pointer items-center rounded border border-neutral-400 px-4 py-3`}>
+          <input
+            type="radio"
+            aria-label="Payment method"
+            className="mr-2"
+            name="paymentMethodId"
+            id="paymentMethodId"
+          />
+          <div className="flex w-full flex-col">
+            <div className="text-base capitalize leading-tight">Credit Card</div>
+          </div>
+        </label>
+        <label className={`mt-2 flex h-16 cursor-pointer items-center rounded border border-neutral-400 px-4 py-3`}>
+          <input
+            type="radio"
+            aria-label="Payment method"
+            className="mr-2"
+            name="paymentMethodId"
+            id="paymentMethodId"
+          />
+          <div className="flex w-full flex-col">
+            <div className="text-base capitalize leading-tight">Cash</div>
+          </div>
+        </label>
+        <label className={`mt-2 flex h-16 cursor-pointer items-center rounded border border-neutral-400 px-4 py-3`}>
+          <input
+            type="radio"
+            aria-label="Payment method"
+            className="mr-2"
+            name="paymentMethodId"
+            id="paymentMethodId"
+          />
+          <div className="flex w-full flex-col">
+            <div className="text-base capitalize leading-tight">Paypal</div>
+          </div>
+        </label>
+        <label className={`mt-2 flex h-16 cursor-pointer items-center rounded border border-neutral-400 px-4 py-3`}>
+          <input
+            type="radio"
+            aria-label="Payment method"
+            className="mr-2"
+            name="paymentMethodId"
+            id="paymentMethodId"
+          />
+          <div className="flex w-full flex-col">
+            <div className="text-base capitalize leading-tight">Store Credits</div>
+          </div>
+        </label>
+        <br />
+        <button
+          type="submit"
+          onClick={onSubmitOrder}
+          className="w-full rounded-md border border-transparent bg-accent-400 py-3 px-4 text-base font-medium text-white shadow-sm hover:bg-accent-500 focus:outline-none focus:ring-2 focus:ring-accent-500 focus:ring-offset-2 focus:ring-offset-gray-50"
+        >
+          Create Order
+        </button>
+      </div>
+    </section>
+  );
+};
+
+export default CheckoutNoPayment;
