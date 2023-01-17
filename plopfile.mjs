@@ -1,27 +1,21 @@
 import fs from "fs";
 export default function (plop) {
   // controller generator
+  const pathToProvisionFile =
+    plop.getDestBasePath() + "/.customer_provision.yml";
+  const content = fs.readFileSync(pathToProvisionFile, {
+    encoding: "utf8",
+    flag: "r",
+  });
+  const [_, projectName, projectId] = content.match(
+    /customer: "(.*)"\s*project: "(.*)"/
+  );
+  const configPath = `${projectName}_${projectId}/config/project.yml`;
+  const projectPath = `packages/${projectId}`;
+  //
   plop.setGenerator("config", {
     description: "CoCo <> CoFe configuration",
     prompts: [
-      {
-        type: "input",
-        name: "configPath",
-        message:
-          "Please provide the path to config.yml [Enter to use the suggested]",
-        default() {
-          const pathToProvisionFile =
-            plop.getDestBasePath() + "/.customer_provision.yml";
-          const content = fs.readFileSync(pathToProvisionFile, {
-            encoding: "utf8",
-            flag: "r",
-          });
-          const [_, projectName, projectId] = content.match(
-            /customer: "(.*)"\s*project: "(.*)"/
-          );
-          return `${projectName}_${projectId}/config/project.yml`;
-        },
-      },
       {
         type: "input",
         name: "clientId",
@@ -74,30 +68,45 @@ export default function (plop) {
     ],
     actions: [
       {
+        data: {
+          configPath,
+        },
         type: "modify",
         path: "{{configPath}}",
         pattern: /clientId\: .*\s/gi,
         template: "clientId: {{clientId}}\n",
       },
       {
+        data: {
+          configPath,
+        },
         type: "modify",
         path: "{{configPath}}",
         pattern: /clientSecret\: .*\s/gi,
         template: "clientSecret: {{clientSecret}}\n",
       },
       {
+        data: {
+          configPath,
+        },
         type: "modify",
         path: "{{configPath}}",
         pattern: /projectKey\: .*\s/gi,
         template: "projectKey: {{projectKey}}\n",
       },
       {
+        data: {
+          configPath,
+        },
         type: "modify",
         path: "{{configPath}}",
         pattern: /authUrl\: .*\s/gi,
         template: "authUrl: {{authUrl}}\n",
       },
       {
+        data: {
+          configPath,
+        },
         type: "modify",
         path: "{{configPath}}",
         pattern: /hostUrl\: .*\s/gi,
@@ -108,41 +117,31 @@ export default function (plop) {
 
   plop.setGenerator("Remove Adyen logic", {
     description: "Remove Adyen checkout",
-    prompts: [
-      {
-        type: "input",
-        name: "projectPath",
-        message:
-          "Please provide the path to project packages root dir [Enter to use the suggested]",
-        default() {
-          const pathToProvisionFile =
-            plop.getDestBasePath() + "/.customer_provision.yml";
-          const content = fs.readFileSync(pathToProvisionFile, {
-            encoding: "utf8",
-            flag: "r",
-          });
-          const [_, _1, projectId] = content.match(
-            /customer: "(.*)"\s*project: "(.*)"/
-          );
-          return `packages/${projectId}`;
-        },
-      },
-    ],
+    prompts: [],
     actions: [
       // CartController.ts changes
       {
+        data: {
+          projectPath,
+        },
         type: "modify",
         path: "{{projectPath}}/backend/commerce-commercetools/actionControllers/CartController.ts",
         pattern: /(const emailApi =.*)/gi,
         template: "// $1",
       },
       {
+        data: {
+          projectPath,
+        },
         type: "modify",
         path: "{{projectPath}}/backend/commerce-commercetools/actionControllers/CartController.ts",
         pattern: /(const order = await.*)/gi,
         template: "// $1",
       },
       {
+        data: {
+          projectPath,
+        },
         type: "modify",
         path: "{{projectPath}}/backend/commerce-commercetools/actionControllers/CartController.ts",
         pattern: /(emailApi.sendOrderConfirmationEmail.*)/gi,
@@ -150,12 +149,18 @@ export default function (plop) {
       },
       // Add no payment checkout
       {
+        data: {
+          projectPath,
+        },
         type: "add",
         path: "{{projectPath}}/frontend/components/commercetools-ui/adyen-checkout/panels/checkout-no-payment.tsx",
         templateFile: "_templates/no-checkout-payment.hbs",
         abortOnFail: true,
       },
       {
+        data: {
+          projectPath,
+        },
         type: "modify",
         path: "{{projectPath}}/frontend/components/commercetools-ui/adyen-checkout/index.tsx",
         pattern: /(import Checkout from.*)/gi,
@@ -163,6 +168,9 @@ export default function (plop) {
           "import CheckoutNoPayment from 'components/commercetools-ui/adyen-checkout/panels/checkout-no-payment';\nimport { useRouter } from 'next/router';",
       },
       {
+        data: {
+          projectPath,
+        },
         type: "modify",
         path: "{{projectPath}}/frontend/components/commercetools-ui/adyen-checkout/index.tsx",
         pattern:
@@ -171,6 +179,9 @@ export default function (plop) {
                 const router = useRouter();`,
       },
       {
+        data: {
+          projectPath,
+        },
         type: "modify",
         path: "{{projectPath}}/frontend/components/commercetools-ui/adyen-checkout/index.tsx",
         pattern:
@@ -181,6 +192,9 @@ export default function (plop) {
                 },`,
       },
       {
+        data: {
+          projectPath,
+        },
         type: "modify",
         path: "{{projectPath}}/frontend/components/commercetools-ui/adyen-checkout/index.tsx",
         pattern: "const steps = [",
