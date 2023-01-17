@@ -115,6 +115,22 @@ export default function (plop) {
     ],
   });
 
+  plop.setGenerator("Default shipping method", {
+    description: "Set default shipping method to empty",
+    prompts: [],
+    actions: [
+      {
+        data: {
+          projectPath,
+        },
+        type: "modify",
+        path: "{{configPath}}",
+        pattern: /clientId\: .*\s/gi,
+        template: "clientId: {{clientId}}\n",
+      },
+    ],
+  });
+
   plop.setGenerator("Remove Adyen logic", {
     description: "Remove Adyen checkout",
     prompts: [],
@@ -204,6 +220,35 @@ export default function (plop) {
                 };
 
                 const steps = [`,
+      },
+    ],
+  });
+
+  plop.setGenerator("Code fixes", {
+    prompts: [],
+    actions: [
+      {
+        data: {
+          projectPath,
+        },
+        type: "modify",
+        path: "{{projectPath}}/frontend/frontastic/lib/image/index.tsx",
+        pattern: "let media: MediaItem;",
+        template: `
+                if (!mediaProp) {
+                    return null;
+                  }
+                  let media: MediaItem;
+                `,
+      },
+      {
+        data: {
+          projectPath,
+        },
+        type: "modify",
+        path: "{{projectPath}}/frontend/components/commercetools-ui/price/index.tsx",
+        pattern: /const Price((.*)\s*)+;/gm,
+        templateFile: "_templates/price.hbs",
       },
     ],
   });
