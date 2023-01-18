@@ -1,0 +1,22 @@
+{
+  "name": "poc-startup-kit",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "plop"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/commercetools/poc-startup-kit.git"
+  },
+  "author": "Behnam Tehrani",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/commercetools/poc-startup-kit/issues"
+  },
+  "homepage": "https://github.com/commercetools/poc-startup-kit#readme",
+  "dependencies": {
+    "plop": "^3.1.1"
+  }
+}

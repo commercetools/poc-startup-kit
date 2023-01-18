@@ -13,59 +13,61 @@ export default function (plop) {
   const configPath = `${projectName}_${projectId}/config/project.yml`;
   const projectPath = `packages/${projectId}`;
   //
+
+  const projectSettingsPrompts = [
+    {
+      type: "input",
+      name: "clientId",
+      message: "Please provide the Client ID",
+      validate(answer) {
+        return !!answer;
+      },
+    },
+    {
+      type: "input",
+      name: "clientSecret",
+      message: "Please provide the Client Secret",
+      validate(answer) {
+        return !!answer;
+      },
+    },
+    {
+      type: "input",
+      name: "projectKey",
+      message: "Please provide the projectKey",
+      validate(answer) {
+        return !!answer;
+      },
+    },
+    {
+      type: "input",
+      name: "authUrl",
+      message: "Please provide the authUrl [Enter to use the suggested]",
+      default: "https://auth.us-central1.gcp.commercetools.com",
+      validate(answer) {
+        return !!answer.match(
+          /^(http(s)?:\/\/)[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\(\)\*\+,;=.]+$/g
+        );
+      },
+    },
+    {
+      type: "input",
+      name: "hostUrl",
+      message: "Please provide the hostUrl [Enter to use the suggested]",
+      default: "https://api.us-central1.gcp.commercetools.com",
+      validate(answer) {
+        return !!answer.match(
+          /^(http(s)?:\/\/)[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\(\)\*\+,;=.]+$/g
+        );
+      },
+    },
+    // b2b yml feature
+    // b2b subtrees
+    // setup currencies and languages in MC
+  ];
   plop.setGenerator("config", {
     description: "CoCo <> CoFe configuration",
-    prompts: [
-      {
-        type: "input",
-        name: "clientId",
-        message: "Please provide the Client ID",
-        validate(answer) {
-          return !!answer;
-        },
-      },
-      {
-        type: "input",
-        name: "clientSecret",
-        message: "Please provide the Client Secret",
-        validate(answer) {
-          return !!answer;
-        },
-      },
-      {
-        type: "input",
-        name: "projectKey",
-        message: "Please provide the projectKey",
-        validate(answer) {
-          return !!answer;
-        },
-      },
-      {
-        type: "input",
-        name: "authUrl",
-        message: "Please provide the authUrl [Enter to use the suggested]",
-        default: "https://auth.us-central1.gcp.commercetools.com",
-        validate(answer) {
-          return !!answer.match(
-            /^(http(s)?:\/\/)[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\(\)\*\+,;=.]+$/g
-          );
-        },
-      },
-      {
-        type: "input",
-        name: "hostUrl",
-        message: "Please provide the hostUrl [Enter to use the suggested]",
-        default: "https://api.us-central1.gcp.commercetools.com",
-        validate(answer) {
-          return !!answer.match(
-            /^(http(s)?:\/\/)[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\(\)\*\+,;=.]+$/g
-          );
-        },
-      },
-      // b2b yml feature
-      // b2b subtrees
-      // setup currencies and languages in MC
-    ],
+    prompts: projectSettingsPrompts,
     actions: [
       {
         data: {
