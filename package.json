@@ -6,6 +6,9 @@
   "scripts": {
     "start": "plop"
   },
+  "bin": {
+    "poc-startup-kit": "./index.js"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/commercetools/poc-startup-kit.git"
@@ -17,6 +20,8 @@
   },
   "homepage": "https://github.com/commercetools/poc-startup-kit#readme",
   "dependencies": {
+    "minimist": "^1.2.7",
+    "node-fetch": "^3.3.0",
     "plop": "^3.1.1"
   }
 }

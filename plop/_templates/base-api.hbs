@@ -1,0 +1,8 @@
+const defaultCurrency = '{{defaultCountry.currency}}';
+
+const localeRegex =
+  /^(?<language>[a-z]{2,})(?:_(?<territory>[A-Z]{2,}))?(?:\.(?<codeset>[A-Z0-9_+-]+))?(?:@(?<modifier>[A-Za-z]+))?$/;
+
+const languageToTerritory = {
+  en: '{{defaultCountry.alpha2}}',
+};
