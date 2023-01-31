@@ -31,33 +31,33 @@ export default function (plop) {
 
     let projectSettings = {};
 
-    plop.setGenerator("Config", {
-        description: "CoCo <> CoFe configuration",
-        prompts: projectSettingsPrompts,
-        actions: getProjectConfigActions({ configPath }),
-    });
+    // plop.setGenerator("Config", {
+    //     description: "CoCo <> CoFe configuration",
+    //     prompts: projectSettingsPrompts,
+    //     actions: getProjectConfigActions({ configPath }),
+    // });
 
-    plop.setGenerator("Remove Adyen logic", {
-        description: "Remove Adyen checkout",
-        prompts: [],
-        actions: [
-            // CartController.ts changes
-            ...getCartControllerActions({ projectPath }),
-            // Add no payment checkout
-            ...getNoPaymentAction({ projectPath }),
-        ],
-    });
+    // plop.setGenerator("Remove Adyen logic", {
+    //     description: "Remove Adyen checkout",
+    //     prompts: [],
+    //     actions: [
+    //         // CartController.ts changes
+    //         ...getCartControllerActions({ projectPath }),
+    //         // Add no payment checkout
+    //         ...getNoPaymentAction({ projectPath }),
+    //     ],
+    // });
 
-    plop.setGenerator("Code fixes", {
-        prompts: [],
-        actions: [
-            ...getFixPriceAction({ projectPath }),
-            ...getFixImageAction({ projectPath }),
-        ],
-    });
+    // plop.setGenerator("Code fixes", {
+    //     prompts: [],
+    //     actions: [
+    //         ...getFixPriceAction({ projectPath }),
+    //         ...getFixImageAction({ projectPath }),
+    //     ],
+    // });
 
     plop.setGenerator("All", {
-        description: "Do everything",
+        description: "Fix all startup workarounds",
         prompts: projectSettingsPrompts,
         // prompts: [],
         actions: [
