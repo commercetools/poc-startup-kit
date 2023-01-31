@@ -2,7 +2,7 @@ import fs from "fs";
 import getCartControllerActions from "./plop/actions/AdyenCheckout/cartController.js";
 import getNoPaymentAction from "./plop/actions/AdyenCheckout/noPayment.js";
 import getProjectSettings from "./plop/actions/CoCoActions/projectSettings.js";
-import { getFixCheckoutAction, getFixImageAction, getFixPDPAction, getFixPriceAction } from './plop/actions/CodeFixes';
+import { getFixCheckoutAction, getFixImageAction, getFixPDPAction, getFixPriceAction } from './plop/actions/CodeFixes/index.js';
 import getLocaleActions from "./plop/actions/LocaleActions/index.js";
 import getProjectConfigActions from "./plop/actions/projectConfig.js";
 import projectSettingsPrompts from "./plop/prompts/projectSettings.js";
