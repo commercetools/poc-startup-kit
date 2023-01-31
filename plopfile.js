@@ -4,6 +4,7 @@ import getNoPaymentAction from "./plop/actions/AdyenCheckout/noPayment.js";
 import getProjectSettings from "./plop/actions/CoCoActions/projectSettings.js";
 import getFixImageAction from "./plop/actions/CodeFixes/image.js";
 import getFixPriceAction from "./plop/actions/CodeFixes/price.js";
+import getFixPDPAction from "./plop/actions/CodeFixes/pdp.js";
 import getLocaleActions from "./plop/actions/LocaleActions/index.js";
 import getProjectConfigActions from "./plop/actions/projectConfig.js";
 import projectSettingsPrompts from "./plop/prompts/projectSettings.js";
@@ -66,6 +67,7 @@ export default function (plop) {
             ...getNoPaymentAction({ projectPath }),
             ...getFixPriceAction({ projectPath }),
             ...getFixImageAction({ projectPath }),
+            ...getFixPDPAction({ projectPath }),
             ...getProjectSettings(plop, {}, baseApi, projectSettings),
             ...getLocaleActions({ projectPath, configPath }),
         ],
