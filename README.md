@@ -19,4 +19,14 @@ Using this little cli you can implement the workarounds in no time!
 1. Add this repo as a dependency `yarn add https://github.com/commercetools/poc-startup-kit`
 1. In terminal run `yarn poc-startup-kit` and follow the on screen questions.
 
+### Features
+- Add No-checkout-payment step to checkout and remove Adyen
+- Fix Ccountry dropdown in checkout
+- Fix locales and prices in code
+- Fix PDP loading issue
 
+### Upcoming features
+- Add locales and currencies directly to CoCo
+- Add Zones and shipping methods to CoCo
+- Use frontend SDK
+- Use B2B BE/FE features 
