@@ -63,12 +63,12 @@ export default function (plop) {
             ...getProjectConfigActions({ configPath }),
             ...getCartControllerActions({ projectPath }),
             ...getNoPaymentAction({ projectPath }),
-            ...getFixPriceAction({ projectPath }),
             ...getFixImageAction({ projectPath }),
             ...getFixPDPAction({ projectPath }),
             ...getFixCheckoutAction({ projectPath }),
             ...getProjectSettings(plop, {}, baseApi, projectSettings),
             ...getLocaleActions({ projectPath, configPath }),
+            ...getFixPriceAction({ projectPath }),
         ],
     });
 }
