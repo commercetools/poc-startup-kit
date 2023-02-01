@@ -1,5 +1,5 @@
 const Price: React.FC<PriceProps> = ({ price, className }) => {
-  const priceWithCurrency = price ? { currencyCode: 'USD', ...price } : price;
+  const priceWithCurrency = price ? { currencyCode: '{{defaultCountry.currency}}', ...price } : price;
 
   return (
     <div className={className || 'mt-1 text-sm font-medium text-gray-900 dark:text-light-100'}>
