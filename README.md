@@ -19,6 +19,7 @@ Using this little cli you can implement the workarounds in no time!
 1. Add this repo as a dependency `yarn add https://github.com/commercetools/poc-startup-kit`
 1. In terminal run `yarn poc-startup-kit` and follow the on screen questions.
 1. After finishing with the fixes, you have to run `yarn fix` in your frontend directory and run `yarn lint:fix` in your backend directory.
+1. remove this repo as dependency `yarn remove https://github.com/commercetools/poc-startup-kit`
 
 ### Features
 - Add No-checkout-payment step to checkout and remove Adyen
