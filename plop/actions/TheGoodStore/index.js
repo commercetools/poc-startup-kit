@@ -16,7 +16,7 @@ export default function getTheGoodStoreAction(_, config) {
     new Promise((resolve, reject) => {
       const gitAdd = spawn(
         "git",
-        ["apply", "plop/patches/good-store.patch --reject"],
+        ["apply", "plop/patches/good-store.patch", "--reject"],
         spawnOptions
       );
 
