@@ -6,6 +6,7 @@ import { getFixCheckoutAction, getFixImageAction, getFixPDPAction, getFixPriceAc
 import getLocaleActions from "./plop/actions/LocaleActions/index.js";
 import getProjectConfigActions from "./plop/actions/projectConfig.js";
 import projectSettingsPrompts from "./plop/prompts/projectSettings.js";
+import getTheGoodStoreAction from "./plop/actions/TheGoodStore/index.js";
 import BaseApi from "./plop/utils/BaseApi.js";
 
 const readProvisionFile = (plop) => {
@@ -30,31 +31,6 @@ export default function (plop) {
 
     let projectSettings = {};
 
-    // plop.setGenerator("Config", {
-    //     description: "CoCo <> CoFe configuration",
-    //     prompts: projectSettingsPrompts,
-    //     actions: getProjectConfigActions({ configPath }),
-    // });
-
-    // plop.setGenerator("Remove Adyen logic", {
-    //     description: "Remove Adyen checkout",
-    //     prompts: [],
-    //     actions: [
-    //         // CartController.ts changes
-    //         ...getCartControllerActions({ projectPath }),
-    //         // Add no payment checkout
-    //         ...getNoPaymentAction({ projectPath }),
-    //     ],
-    // });
-
-    // plop.setGenerator("Code fixes", {
-    //     prompts: [],
-    //     actions: [
-    //         ...getFixPriceAction({ projectPath }),
-    //         ...getFixImageAction({ projectPath }),
-    //     ],
-    // });
-
     plop.setGenerator("All", {
         description: "Fix all startup workarounds",
         prompts: projectSettingsPrompts,
@@ -69,6 +45,16 @@ export default function (plop) {
             ...getProjectSettings(plop, {}, baseApi, projectSettings),
             ...getLocaleActions({ projectPath, configPath }),
             ...getFixPriceAction({ projectPath }),
+        ],
+    });
+
+    plop.setGenerator("The-Good-Store", {
+        description: "Apply The-Good-Store look and feel + frontend SDK",
+        prompts: projectSettingsPrompts,
+        // prompts: [],
+        actions: [
+            ...getProjectConfigActions({ configPath }),
+            getTheGoodStoreAction(),
         ],
     });
 }
