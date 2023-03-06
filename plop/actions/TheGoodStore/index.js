@@ -1,4 +1,5 @@
 import { spawn } from "child_process";
+const didSucceed = (code) => `${code}` === '0';
 
 export default function getTheGoodStoreAction(_, config) {
   const spawnOptions = config.verbose
@@ -15,7 +16,7 @@ export default function getTheGoodStoreAction(_, config) {
     new Promise((resolve, reject) => {
       const gitAdd = spawn(
         "git",
-        ["apply", "/patches/good-store.patch"],
+        ["apply", "plop/patches/good-store.patch"],
         spawnOptions
       );
 

@@ -54,7 +54,7 @@ export default function (plop) {
         // prompts: [],
         actions: [
             ...getProjectConfigActions({ configPath }),
-            getTheGoodStoreAction(),
+            getTheGoodStoreAction,
         ],
     });
 }
